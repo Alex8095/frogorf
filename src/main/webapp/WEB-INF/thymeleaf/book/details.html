@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:include="fragments/layout :: head"></head>
+<body>
+	<div th:replace="fragments/layout :: header"></div>
+	<div class="container-fluid">
+		<div class="row">
+			<div th:replace="fragments/layout :: left"></div>
+			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+				<nav class="navbar navbar-default" role="navigation">
+				<div class="container-fluid">
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<ul class="nav navbar-nav">
+							<li><a href="../books.html" th:href="@{/books.html}" th:text="#{action.back}">back</a></li>
+							<li><a href="../book/edit.html" th:href="@{|/book/edit/${book.id}.html|}" th:text="#{action.edit}">Edit</a></li>
+							<li><a href="../book/delete.html" th:href="@{|/book/delete/${book.id}.html|}" th:text="#{action.delete}">delete</a></li>
+							<li><a href="../book/new.html" th:href="@{/book/new.html}" th:text="#{action.add}"></a></li>
+						</ul>
+					</div>
+				</div>
+				</nav>
+
+				<h2 th:text="#{label_book_info}"></h2>
+				<table class="table table-striped" style="width: 600px;">
+					<tr>
+						<th th:text="#{label_book_name}">name</th>
+						<td><b th:text="${book.name}">name</b></td>
+					</tr>
+					<tr>
+						<th th:text="#{label_book_authors}">description</th>
+						<td th:text="${book.authors}">authors</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

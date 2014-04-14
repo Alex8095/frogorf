@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:include="fragments/layout :: head"></head>
+<body>
+	<div th:replace="fragments/layout :: header"></div>
+	<div class="container-fluid">
+		<div class="row">
+			<div th:replace="fragments/layout-dictionary :: left"></div>
+			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+				<nav class="navbar navbar-default" role="navigation">
+				<div class="container-fluid">
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<ul class="nav navbar-nav">
+							<li><a href="../dictionary.html" th:href="@{/dictionaries.html}" th:text="#{action.back}">back</a></li>
+							<li><a href="../dictionary/edit.html" th:href="@{|/dictionary/${dictionary.id}/edit.html|}" th:text="#{action.edit}">Edit</a></li>
+							<li><a href="../dictionary/delete.html" th:href="@{|/dictionary/${dictionary.id}/delete.html|}" th:text="#{action.delete}">delete</a></li>
+						</ul>
+					</div>
+				</div>
+				</nav>
+
+				<h2>Dictionary Information</h2>
+				<table class="table table-striped" style="width: 600px;">
+					<tr>
+						<th th:text="#{dictionary.name}">name</th>
+						<td><b th:text="${dictionary.name}">name</b></td>
+					</tr>
+					<tr>
+						<th th:text="#{dictionary.code}">code</th>
+						<td th:text="${dictionary.code}">code</td>
+					</tr>
+					<tr>
+						<th th:text="#{dictionary.description}">description</th>
+						<td th:text="${dictionary.description}">description</td>
+					</tr>
+					<tr>
+						<th th:text="#{dictionary.lang}">lang</th>
+						<td th:text="${dictionary.lang}">lang</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

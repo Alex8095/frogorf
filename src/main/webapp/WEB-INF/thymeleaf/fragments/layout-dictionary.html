@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+</head>
+<body>
+	<div th:fragment="left" class="col-sm-3 col-md-2 sidebar">
+		<ul class="nav nav-sidebar">
+			<li><a href="../dictionary/values.html" th:href="@{/dictionary/values.html}" th:text="#{menu.dictionaries.values}">menu.dictionaries.values</a></li>
+		</ul>
+	</div>
+</body>
+</html>

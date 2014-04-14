@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:include="fragments/layout :: head"></head>
+<body>
+	<div th:replace="fragments/layout :: header"></div>
+	<div class="container-fluid">
+		<div class="row">
+			<div th:replace="fragments/layout :: left"></div>
+			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+				<nav class="navbar navbar-default" role="navigation">
+				<div class="container-fluid">
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<ul class="nav navbar-nav">
+							<li><a href="../book/new.html" th:href="@{/book/new.html}" th:text="#{action.add}"></a></li>
+						</ul>
+					</div>
+				</div>
+				</nav>
+
+				<h2 th:text="#{label_book_list}"></h2>
+
+				<div class="table-responsive">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th th:text="#{label_book_name}"></th>
+								<th th:text="#{label_book_authors}"></th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="book : ${books}">
+								<td>
+									<div class="checkbox">
+										<label><input type="checkbox" th:value="${book.id}" /></label>
+									</div>
+								</td>
+								<td><a class="" href="../book/edit.html" th:href="@{|book/${book.id}.html|}" th:text="${book.name}"></a></td>
+								<td th:text="${book.authors}"></td>
+								<td><a class="btn btn-warning btn-xs" href="../book/edit.html" th:href="@{|/book/edit/${book.id}.html|}" th:text="#{action.edit}">edit</a> <a class="btn btn-danger btn-xs"
+									href="../book/delete.html" th:href="@{|/book/delete/${book.id}.html|}" th:text="#{action.delete}">delete</a></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

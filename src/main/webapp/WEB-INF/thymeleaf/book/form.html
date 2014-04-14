@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:include="fragments/layout :: head"></head>
+<body>
+	<div th:replace="fragments/layout :: header"></div>
+	<div class="container-fluid">
+		<div class="row">
+			<div th:replace="fragments/layout :: left"></div>
+			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+				<nav class="navbar navbar-default" role="navigation">
+				<div class="container-fluid">
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<ul class="nav navbar-nav">
+							<li><a href="../books.html" th:href="@{/books.html}" th:text="#{action.back}">back</a></li>
+						</ul>
+					</div>
+				</div>
+				</nav>
+
+				<h2>
+					<span th:if="${book['new']}" th:remove="tag" th:text="#{status.new}">New </span> <span th:text="#{label_book}">book</span>
+				</h2>
+
+				<form class="form-horizontal" th:object="${book}" method="post" action="./bookDetails.html" th:action="@{${#httpServletRequest.servletPath}}">
+					<div class="form-group" th:classappend="${#fields.hasErrors('name')} ? error">
+						<label class="col-sm-2 control-label" th:text="#{label_book_name}">name</label>
+						<div class="col-sm-10">
+							<input class="form-control" type="text" th:field="*{name}" /> <span class="help-inline" th:errors="*{name}">[error]</span>
+						</div>
+					</div>
+
+					<div class="form-group" th:classappend="${#fields.hasErrors('authors')} ? error">
+						<label class="col-sm-2 control-label" th:text="#{label_book_authors}">authors</label>
+						<div class="col-sm-10">
+							<input class="form-control" type="text" th:field="*{authors}" /> <span class="help-inline" th:errors="*{authors}">[error]</span>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<button class="btn btn-default" th:if="${book['new']}" type="submit" th:text="#{action.add}">add</button>
+							<button class="btn btn-default" th:unless="${book['new']}" type="submit" th:text="#{action.update}">update</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
