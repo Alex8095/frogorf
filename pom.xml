@@ -5,7 +5,7 @@
 	<artifactId>frogorf</artifactId>
 	<name>frogorf</name>
 	<packaging>war</packaging>
-	<version>1.0.0-BUILD-SNAPSHOT</version>
+	<version>ROOT</version>
 	<properties>
 
 		<!-- Generic properties -->

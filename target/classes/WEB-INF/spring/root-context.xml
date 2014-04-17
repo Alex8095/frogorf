@@ -10,6 +10,6 @@
 	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" p:location="classpath:/WEB-INF/spring/data-access.properties" />
 
 	<import resource="datasource-config.xml" />
-	<import resource="security-context.xml" />
+	<!-- <import resource="security-context.xml" /> -->
 	<!-- <context:component-scan base-package="com.frogorf.isawyou.service.impl" /> -->
 </beans>

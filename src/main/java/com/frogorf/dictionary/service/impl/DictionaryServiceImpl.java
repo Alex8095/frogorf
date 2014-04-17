@@ -61,6 +61,7 @@ public class DictionaryServiceImpl implements DictionaryService {
 	 * com.frogorf.dictioanry.service.DictionaryService#saveDictionary(com.
 	 * frogorf.dictionary.domain.Dictionary) */
 	@Override
+	@Transactional
 	public void saveDictionary(Dictionary dictionary) {
 		dictionaryDao.saveDictionary(dictionary);
 	}
@@ -134,6 +135,7 @@ public class DictionaryServiceImpl implements DictionaryService {
 	 * com.frogorf.dictioanry.service.DictionaryService#saveDictionary(com.
 	 * frogorf.dictionary.domain.DictionaryValue) */
 	@Override
+	@Transactional
 	public void saveDictionaryValue(DictionaryValue dictionaryValue) {
 		dictionaryDao.saveDictionaryValue(dictionaryValue);
 	}
