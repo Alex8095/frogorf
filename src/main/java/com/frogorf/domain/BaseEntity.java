@@ -3,6 +3,8 @@
  */
 package com.frogorf.domain;
 
+import java.util.Locale;
+
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,6 +15,8 @@ import javax.persistence.MappedSuperclass;
  * @version */
 @MappedSuperclass
 public class BaseEntity {
+
+	private static final Locale DEFAULT_LOCALE = Locale.getDefault();
 
 	@Id
 	@Column(name = "id")
@@ -29,5 +33,13 @@ public class BaseEntity {
 
 	public boolean isNew() {
 		return (this.id == null);
+	}
+
+	public Locale getLocale() {
+		return DEFAULT_LOCALE;
+	}
+
+	public String getLocaleLanguage() {
+		return DEFAULT_LOCALE.getLanguage();
 	}
 }

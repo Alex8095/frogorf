@@ -52,7 +52,7 @@
 	<beans:bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource" p:basenames="WEB-INF/i18n/messages,WEB-INF/i18n/application"
 		p:fallbackToSystemLocale="false" />
 	<!-- хранить предпочтительную конфигурацию языка в cookie -->
-	<beans:bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver" p:cookieName="locale" p:defaultLocale="ru_RU" />
+	<beans:bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver" p:cookieName="locale" p:defaultLocale="ru" />
 
 	<!-- решает локализованную <theme_name>. свойства файлы в пути к классам, чтобы обеспечить поддержку темы -->
 	<beans:bean id="themeSource" class="org.springframework.ui.context.support.ResourceBundleThemeSource" />

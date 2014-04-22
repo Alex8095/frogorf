@@ -17,6 +17,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.junit.Ignore;
 
 import com.frogorf.domain.BaseEntity;
 

@@ -20,8 +20,8 @@
 			<list>
 				<value>com.frogorf.dictionary.domain</value>
 				<value>com.frogorf.domain</value>
-				<value>com.frogorf.security.domain</value>
-				<value>com.frogorf.files.domain</value>
+				<value>com.frogorf.web.core.domain</value>
+				<value>com.frogorf.localize.model</value>
 			</list>
 		</property>
 		<!-- <property name="configLocation"> <value>classpath:hibernate.cfg.xml</value> </property> -->
@@ -41,4 +41,5 @@
 	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+
 </beans>
