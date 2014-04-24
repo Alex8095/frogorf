@@ -12,12 +12,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.frogorf.dictionary.domain.Dictionary;
+import com.frogorf.web.core.domain.Page;
 
-/**
- * 
- * @author Tsurkin Alex
- * @version
- */
+/** @author Tsurkin Alex
+ * @version */
 @Controller
 public class HomeController {
 
@@ -26,6 +25,12 @@ public class HomeController {
 	/** Simply selects the home view to render by returning its name. */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model, Locale locale) {
+		Page page = new Page();
+		page.setAction("action");
+		page.getAction();
+
+		System.out.println(page.getAction());
+
 		logger.info("Welcome home!" + locale);
 		System.out.println("Welcome home!" + locale);
 		return "home";

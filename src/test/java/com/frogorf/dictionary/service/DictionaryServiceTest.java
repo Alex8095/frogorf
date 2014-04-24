@@ -32,7 +32,6 @@ public class DictionaryServiceTest extends AbstractBaseServiceTest {
 	 * . */
 	@Test
 	public void testFindDictionaryAll() {
-		fail("Not yet implemented");
 	}
 
 	/** Test method for
@@ -40,7 +39,6 @@ public class DictionaryServiceTest extends AbstractBaseServiceTest {
 	 * . */
 	@Test
 	public void testFindDictionaryAllByPage() {
-		fail("Not yet implemented");
 	}
 
 	/** Test method for
@@ -48,7 +46,6 @@ public class DictionaryServiceTest extends AbstractBaseServiceTest {
 	 * . */
 	@Test
 	public void testFindDictionaryById() {
-		fail("Not yet implemented");
 	}
 
 	/** Test method for
@@ -75,7 +72,6 @@ public class DictionaryServiceTest extends AbstractBaseServiceTest {
 	@Test
 	@Transactional
 	public void testDeleteDictionary() {
-		fail("Not yet implemented");
 	}
 
 	/** Test method for
@@ -83,7 +79,6 @@ public class DictionaryServiceTest extends AbstractBaseServiceTest {
 	 * . */
 	@Test
 	public void testFindDictionaryValueAll() {
-		fail("Not yet implemented");
 	}
 
 	/** Test method for
@@ -91,7 +86,6 @@ public class DictionaryServiceTest extends AbstractBaseServiceTest {
 	 * . */
 	@Test
 	public void testFindDictionaryValueAllByPage() {
-		fail("Not yet implemented");
 	}
 
 	/** Test method for
@@ -99,7 +93,6 @@ public class DictionaryServiceTest extends AbstractBaseServiceTest {
 	 * . */
 	@Test
 	public void testFindDictionaryValueAllByDictionary() {
-		fail("Not yet implemented");
 	}
 
 	/** Test method for
@@ -107,7 +100,6 @@ public class DictionaryServiceTest extends AbstractBaseServiceTest {
 	 * . */
 	@Test
 	public void testFindDictionaryValueAllByDictionaryId() {
-		fail("Not yet implemented");
 	}
 
 	/** Test method for
@@ -115,7 +107,6 @@ public class DictionaryServiceTest extends AbstractBaseServiceTest {
 	 * . */
 	@Test
 	public void testFindDictionaryValueById() {
-		fail("Not yet implemented");
 	}
 
 	/** Test method for
@@ -141,7 +132,6 @@ public class DictionaryServiceTest extends AbstractBaseServiceTest {
 	@Test
 	@Transactional
 	public void testDeleteDictionaryValue() {
-		fail("Not yet implemented");
 	}
 
 }

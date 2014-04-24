@@ -19,7 +19,7 @@
 		<spring.batch.version>2.1.8.RELEASE</spring.batch.version>
 		<spring.integration.version>3.0.1.RELEASE</spring.integration.version>
 
-		<org.aspectj-version>1.6.10</org.aspectj-version>
+		<org.aspectj-version>1.7.1</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 
 		<!-- Hibernate / JPA -->
@@ -80,6 +80,13 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
 			<version>${org.springframework-version}</version>
+			<exclusions>
+				<!-- Exclude Commons Logging in favor of SLF4j -->
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -227,6 +234,17 @@
 			<artifactId>aspectjrt</artifactId>
 			<version>${org.aspectj-version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>${org.aspectj-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib</artifactId>
+			<version>2.2.2</version>
+		</dependency>
+		
 
 		<!-- Apache Commons -->
 		<dependency>
@@ -404,9 +422,9 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>2.5.1</version>
 				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
-					<compilerArgument>-Xlint:all</compilerArgument>
+					<source>1.5</source>
+					<target>1.5</target>
+					<compilerArgument>-Xlint:unchecked</compilerArgument>
 					<showWarnings>true</showWarnings>
 					<showDeprecation>true</showDeprecation>
 				</configuration>

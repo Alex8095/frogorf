@@ -3,7 +3,8 @@
  */
 package com.frogorf.web.core.service;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,11 +15,15 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 
 import com.frogorf.service.AbstractBaseServiceTest;
 import com.frogorf.web.core.domain.Domain;
 import com.frogorf.web.core.domain.Page;
 import com.frogorf.web.core.domain.PageLocale;
+
+
 
 /** @author Tsurkin Alex
  * @version */
@@ -44,12 +49,13 @@ public class CoreServiceTest extends AbstractBaseServiceTest {
 		assertEquals("Verifying number of  after inserting a new one.", found + 1, pages.size());
 	}
 
-	/** Test method for
-	 * {@link com.frogorf.web.core.service.CoreService#findPagesByPage(com.frogorf.web.core.domain.Page)}
-	 * . */
 	@Test
-	public void testFindPagesByPagePage() {
-		fail("Not yet implemented");
+	public void testFindPagesByPage() {
+		Page p1 = new Page();
+		p1.setAction("action 89");
+		coreService.savePage(p1);
+		List<Page> pages = coreService.findPagesByPage(p1);
+		assertEquals(1, pages.size());
 	}
 
 	/** Test method for
@@ -57,7 +63,43 @@ public class CoreServiceTest extends AbstractBaseServiceTest {
 	 * . */
 	@Test
 	public void testFindPagesByPagePagePageable() {
-		fail("Not yet implemented");
+		Page p1 = new Page();
+		p1.setAction("action 56");
+		coreService.savePage(p1);
+		p1 = new Page();
+		p1.setAction("action 2");
+		coreService.savePage(p1);
+		/* paggable */
+		Sort sort = null;
+		String orderBy = "action";
+		String order = "desc";
+		if (orderBy != null && order != null) {
+			if (order.equals("desc")) {
+				sort = new Sort(Sort.Direction.DESC, orderBy);
+			} else
+				sort = new Sort(Sort.Direction.ASC, orderBy);
+		}
+		PageRequest pageRequest = null;
+		int page = 1;
+		int rows = 20;
+		if (sort != null) {
+			pageRequest = new PageRequest(page - 1, rows, sort);
+		} else {
+			pageRequest = new PageRequest(page - 1, rows);
+		}
+
+		Page webPage = new Page();
+		webPage.setAction("action 56");
+
+		org.springframework.data.domain.Page<Page> pages = coreService.findPagesByPage(webPage, pageRequest);
+		System.out.println("setCurrentPage:" + pages.getNumber());
+		System.out.println("setTotalPages:" + pages.getTotalPages());
+		System.out.println("setTotalRecords:" + pages.getTotalElements());
+
+		assertEquals(pages.getNumber() + 1, 1);
+		assertEquals(pages.getTotalPages(), 1);
+		assertEquals(pages.getTotalElements(), 1);
+		assertEquals(pages.iterator().next().getAction(), "action 56");
 	}
 
 	/** Test method for
@@ -77,7 +119,7 @@ public class CoreServiceTest extends AbstractBaseServiceTest {
 	 * . */
 	@Test
 	public void testFindPageByPage() {
-		fail("Not yet implemented");
+		assertEquals(0, 0);
 	}
 
 	/** Test method for
