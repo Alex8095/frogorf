@@ -23,10 +23,10 @@ import com.frogorf.web.core.domain.Domain;
 import com.frogorf.web.core.domain.Page;
 import com.frogorf.web.core.domain.PageLocale;
 
-
-
-/** @author Tsurkin Alex
- * @version */
+/**
+ * @author Tsurkin Alex
+ * @version
+ */
 public class CoreServiceTest extends AbstractBaseServiceTest {
 
 	private static final Logger logger = LoggerFactory.getLogger(CoreServiceTest.class);
@@ -36,8 +36,10 @@ public class CoreServiceTest extends AbstractBaseServiceTest {
 	@Autowired
 	protected DomainService domainService;
 
-	/** Test method for
-	 * {@link com.frogorf.web.core.service.CoreService#findPages()}. */
+	/**
+	 * Test method for
+	 * {@link com.frogorf.web.core.service.CoreService#findPages()}.
+	 */
 	@Test
 	public void testFindPages() {
 		List<Page> pages = coreService.findPages();
@@ -58,9 +60,11 @@ public class CoreServiceTest extends AbstractBaseServiceTest {
 		assertEquals(1, pages.size());
 	}
 
-	/** Test method for
+	/**
+	 * Test method for
 	 * {@link com.frogorf.web.core.service.CoreService#findPagesByPage(com.frogorf.web.core.domain.Page, org.springframework.data.domain.Pageable)}
-	 * . */
+	 * .
+	 */
 	@Test
 	public void testFindPagesByPagePagePageable() {
 		Page p1 = new Page();
@@ -102,8 +106,10 @@ public class CoreServiceTest extends AbstractBaseServiceTest {
 		assertEquals(pages.iterator().next().getAction(), "action 56");
 	}
 
-	/** Test method for
-	 * {@link com.frogorf.web.core.service.CoreService#findPageById(int)}. */
+	/**
+	 * Test method for
+	 * {@link com.frogorf.web.core.service.CoreService#findPageById(int)}.
+	 */
 	@Test
 	public void testFindPageById() {
 		Page page = new Page();
@@ -114,17 +120,21 @@ public class CoreServiceTest extends AbstractBaseServiceTest {
 		assertEquals("testFindPageById page_id:" + Integer.toString(page_id), page.getAction(), "action");
 	}
 
-	/** Test method for
+	/**
+	 * Test method for
 	 * {@link com.frogorf.web.core.service.CoreService#findPageByPage(com.frogorf.web.core.domain.Page)}
-	 * . */
+	 * .
+	 */
 	@Test
 	public void testFindPageByPage() {
 		assertEquals(0, 0);
 	}
 
-	/** Test method for
+	/**
+	 * Test method for
 	 * {@link com.frogorf.web.core.service.CoreService#savePage(com.frogorf.web.core.domain.Page)}
-	 * . */
+	 * .
+	 */
 	@Test
 	public void testSavePage() {
 		/* domain */
@@ -192,8 +202,10 @@ public class CoreServiceTest extends AbstractBaseServiceTest {
 		assertEquals(page.getCurrentPageLocale().getWebTitle(), "webTitle");
 	}
 
-	/** Test method for
-	 * {@link com.frogorf.web.core.service.CoreService#deletePage(int)}. */
+	/**
+	 * Test method for
+	 * {@link com.frogorf.web.core.service.CoreService#deletePage(int)}.
+	 */
 	@Test
 	public void testDeletePage() {
 		Page page = new Page();

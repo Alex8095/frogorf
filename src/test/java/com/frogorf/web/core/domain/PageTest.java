@@ -14,8 +14,10 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/** @author Tsurkin Alex
- * @version */
+/**
+ * @author Tsurkin Alex
+ * @version
+ */
 public class PageTest {
 
 	private static final Logger logger = LoggerFactory.getLogger(PageTest.class);

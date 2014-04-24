@@ -16,8 +16,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.frogorf.service.AbstractBaseServiceTest;
 import com.frogorf.web.core.domain.Domain;
 
-/** @author Tsurkin Alex
- * @version */
+/**
+ * @author Tsurkin Alex
+ * @version
+ */
 public class DomainServiceTest extends AbstractBaseServiceTest {
 
 	private static final Logger logger = LoggerFactory.getLogger(DomainServiceTest.class);
@@ -25,9 +27,11 @@ public class DomainServiceTest extends AbstractBaseServiceTest {
 	@Autowired
 	protected DomainService domainService;
 
-	/** Test method for
+	/**
+	 * Test method for
 	 * {@link com.frogorf.web.core.service.impl.DomainServiceImpl#findDomains()}
-	 * . */
+	 * .
+	 */
 	@Test
 	public void testFindDomains() {
 		List<Domain> domains = domainService.findDomains();
@@ -38,9 +42,11 @@ public class DomainServiceTest extends AbstractBaseServiceTest {
 		assertEquals(count + 1, domainService.findDomains().size());
 	}
 
-	/** Test method for
+	/**
+	 * Test method for
 	 * {@link com.frogorf.web.core.service.impl.DomainServiceImpl#findDomainById(int)}
-	 * . */
+	 * .
+	 */
 	@Test
 	public void testFindDomainById() {
 		Domain domain = new Domain();
@@ -49,9 +55,11 @@ public class DomainServiceTest extends AbstractBaseServiceTest {
 		assertEquals(domainService.findDomainById(domain.getId()).getUrl(), "url");
 	}
 
-	/** Test method for
+	/**
+	 * Test method for
 	 * {@link com.frogorf.web.core.service.impl.DomainServiceImpl#saveDomain(com.frogorf.web.core.domain.Domain)}
-	 * . */
+	 * .
+	 */
 	@Test
 	public void testSaveDomain() {
 		Domain domain = new Domain();
@@ -60,9 +68,11 @@ public class DomainServiceTest extends AbstractBaseServiceTest {
 		assertEquals(domainService.findDomainById(domain.getId()).getUrl(), "url");
 	}
 
-	/** Test method for
+	/**
+	 * Test method for
 	 * {@link com.frogorf.web.core.service.impl.DomainServiceImpl#deleteDomain(int)}
-	 * . */
+	 * .
+	 */
 	@Test
 	public void testDeleteDomain() {
 		Domain domain = new Domain();

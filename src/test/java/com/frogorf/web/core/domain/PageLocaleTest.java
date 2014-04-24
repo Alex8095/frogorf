@@ -7,8 +7,10 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-/** @author Tsurkin Alex
- * @version */
+/**
+ * @author Tsurkin Alex
+ * @version
+ */
 public class PageLocaleTest {
 
 	@Test

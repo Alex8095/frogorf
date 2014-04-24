@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="com.frogorf.web">
+	<logger name="com.frogorf.isawyou">
 		<level value="info" />
 	</logger>
 	

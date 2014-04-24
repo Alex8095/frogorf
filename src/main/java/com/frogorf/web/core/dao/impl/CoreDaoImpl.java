@@ -13,11 +13,14 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
+import com.frogorf.dictionary.domain.Dictionary;
 import com.frogorf.web.core.dao.CoreDao;
 import com.frogorf.web.core.domain.Page;
 
-/** @author Tsurkin Alex
- * @version */
+/**
+ * @author Tsurkin Alex
+ * @version
+ */
 @Repository("coreDao")
 public class CoreDaoImpl implements CoreDao {
 
@@ -25,15 +28,15 @@ public class CoreDaoImpl implements CoreDao {
 	private SessionFactory sessionFactory;
 
 	/* @see com.frogorf.web.core.dao.CoreDao#findPages() */
-	@Override
 	public List<Page> findPages() {
 		return sessionFactory.getCurrentSession().createQuery("from Page").list();
 	}
 
-	/* @see
+	/*
+	 * @see
 	 * com.frogorf.web.core.dao.CoreDao#findPagesByPage(com.frogorf.web.core
-	 * .domain.Page) */
-	@Override
+	 * .domain.Page)
+	 */
 	public List<Page> findPagesByPage(Page page) {
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Page.class);
 		if (page != null) {
@@ -50,40 +53,40 @@ public class CoreDaoImpl implements CoreDao {
 		return criteria.list();
 	}
 
-	/* @see
+	/*
+	 * @see
 	 * com.frogorf.web.core.dao.CoreDao#findPagesByPage(com.frogorf.web.core
-	 * .domain.Page, org.springframework.data.domain.Pageable) */
-	@Override
+	 * .domain.Page, org.springframework.data.domain.Pageable)
+	 */
 	public org.springframework.data.domain.Page<Page> findPagesByPage(Page page, Pageable pageable) {
 		List<Page> l = findPagesByPage(page);
 		return new PageImpl<Page>(l, pageable, l.size());
 	}
 
 	/* @see com.frogorf.web.core.dao.CoreDao#findPageById(int) */
-	@Override
 	public Page findPageById(int id) {
 		return (Page) sessionFactory.getCurrentSession().get(Page.class, id);
 	}
 
-	/* @see
+	/*
+	 * @see
 	 * com.frogorf.web.core.dao.CoreDao#findPageByPage(com.frogorf.web.core.
-	 * domain.Page) */
-	@Override
+	 * domain.Page)
+	 */
 	public Page findPageByPage(Page page) {
 		return null;
 	}
 
-	/* @see
+	/*
+	 * @see
 	 * com.frogorf.web.core.dao.CoreDao#savePage(com.frogorf.web.core.domain
-	 * .Page) */
-	@Override
+	 * .Page)
+	 */
 	public void savePage(Page page) {
 		sessionFactory.getCurrentSession().saveOrUpdate(page);
 	}
 
 	/* @see com.frogorf.web.core.dao.CoreDao#deletePage(int) */
-	@Override
-	@SuppressWarnings("unchecked")
 	public void deletePage(int id) {
 		sessionFactory.getCurrentSession().delete(findPageById(id));
 	}

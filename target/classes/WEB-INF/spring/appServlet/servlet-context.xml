@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans:beans xmlns="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans" xmlns:p="http://www.springframework.org/schema/p"
-	xmlns:context="http://www.springframework.org/schema/context" xmlns:security="http://www.springframework.org/schema/security" xmlns:aop="http://www.springframework.org/schema/aop"
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
 		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd
@@ -25,12 +30,12 @@
 	</beans:bean>
 	<beans:bean id="templateEngine" class="org.thymeleaf.spring3.SpringTemplateEngine">
 		<beans:property name="templateResolver" ref="templateResolver" />
-
+		
 		<beans:property name="additionalDialects">
-			<beans:set>
-				<beans:bean class="org.thymeleaf.extras.springsecurity3.dialect.SpringSecurityDialect" />
-			</beans:set>
-		</beans:property>
+            <beans:set>
+            	<beans:bean class="org.thymeleaf.extras.springsecurity3.dialect.SpringSecurityDialect"/>
+            </beans:set>
+        </beans:property>
 	</beans:bean>
 
 	<beans:bean class="org.thymeleaf.spring3.view.ThymeleafViewResolver">
@@ -43,9 +48,8 @@
 	<!-- <context:component-scan base-package="com.frogorf.web" /> -->
 	<aop:aspectj-autoproxy />
 	<context:component-scan base-package="com.frogorf.web">
-		<context:include-filter type="aspectj" expression="com.frogorf.web.aspect.ControllerLoggingAspect" />
+		<context:include-filter type="aspectj" expression="com.frogorf.web.aspect.ControllerAspect" />
 	</context:component-scan>
-
 
 	<!-- register "global" interceptor beans to apply to all registered HandlerMappings -->
 	<interceptors>
@@ -73,5 +77,5 @@
 	<!-- <beans:property name="warnLogCategory" value="warn" /> -->
 	<!-- needed otherwise exceptions won't be logged anywhere -->
 	<!-- </beans:bean> -->
-
+	
 </beans:beans>

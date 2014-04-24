@@ -16,8 +16,10 @@ import com.frogorf.web.core.dao.DomainDao;
 import com.frogorf.web.core.domain.Domain;
 import com.frogorf.web.core.domain.Page;
 
-/** @author Tsurkin Alex
- * @version */
+/**
+ * @author Tsurkin Alex
+ * @version
+ */
 @Repository("domainDao")
 public class DomainDaoImpl implements DomainDao {
 
@@ -36,9 +38,11 @@ public class DomainDaoImpl implements DomainDao {
 		return (Domain) sessionFactory.getCurrentSession().get(Domain.class, id);
 	}
 
-	/* @see
+	/*
+	 * @see
 	 * com.frogorf.web.core.dao.CoreDao#savePage(com.frogorf.web.core.domain
-	 * .Page) */
+	 * .Page)
+	 */
 	@Override
 	public void saveDomain(Domain domain) {
 		sessionFactory.getCurrentSession().saveOrUpdate(domain);
