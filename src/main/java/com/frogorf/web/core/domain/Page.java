@@ -7,18 +7,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.CollectionOfElements;
 import org.hibernate.annotations.MapKey;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import com.frogorf.domain.BaseEntity;
 
@@ -29,12 +29,15 @@ import com.frogorf.domain.BaseEntity;
 public class Page extends BaseEntity {
 
 	@Column
+	@NotEmpty
 	private String controller;
 	@Column
+	@NotEmpty
 	private String action;
 	@Column
 	private String url;
 	@Column
+	@NotNull
 	private int level;
 	@Column(name = "is_show")
 	private Boolean isShow;

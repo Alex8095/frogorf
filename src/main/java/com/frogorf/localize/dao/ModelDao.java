@@ -5,7 +5,6 @@ package com.frogorf.localize.dao;
 
 import java.util.List;
 
-import com.frogorf.dictionary.domain.Dictionary;
 import com.frogorf.localize.model.Model;
 
 /** @author Tsurkin Alex

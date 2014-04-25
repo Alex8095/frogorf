@@ -44,6 +44,8 @@
 
 	<div th:fragment="left" class="col-sm-3 col-md-2 sidebar">
 		<ul class="nav nav-sidebar">
+			<li><a href="../admin/domains.html" th:href="@{/admin/domains.html}" th:text="#{menu.domains}">domains</a></li>
+			<li><a href="../admin/pages.html" th:href="@{/admin/pages.html}" th:text="#{menu.pages}">pages</a></li>
 			<li><a href="../admin/dictionaries.html" th:href="@{/admin/dictionaries.html}" th:text="#{menu.dictionaries}">dictionaries</a></li>
 			<li><a href="../admin/dictionary/values.html" th:href="@{/admin/dictionary/values.html}" th:text="#{menu.dictionaries.values}">dictionaries.values</a></li>
 		</ul>

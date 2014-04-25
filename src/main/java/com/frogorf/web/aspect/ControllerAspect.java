@@ -19,15 +19,10 @@ public class ControllerAspect {
 
 	@Before("controller() && method()")
 	public void doAccessCheck(JoinPoint joinPoint) {
-		System.out.println(joinPoint.getTarget());
-		System.out.println(joinPoint.getArgs());
-		System.out.println(joinPoint.getKind());
-		System.out.println(joinPoint.getSourceLocation());
-		System.out.println(joinPoint.getSourceLocation());
-		System.out.println(joinPoint.getSignature());
+		System.out.println(joinPointNiceName(joinPoint));
 	}
 
-	private String niceName(JoinPoint joinPoint) {
+	private String joinPointNiceName(JoinPoint joinPoint) {
 		return joinPoint.getTarget().getClass() + "#" + joinPoint.getSignature().getName() + "\n\targs:" + Arrays.toString(joinPoint.getArgs());
 	}
 }

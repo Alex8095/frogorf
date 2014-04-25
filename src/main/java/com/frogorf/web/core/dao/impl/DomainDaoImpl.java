@@ -7,14 +7,10 @@ import java.util.List;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
-import com.frogorf.dictionary.domain.Dictionary;
-import com.frogorf.web.core.dao.CoreDao;
 import com.frogorf.web.core.dao.DomainDao;
 import com.frogorf.web.core.domain.Domain;
-import com.frogorf.web.core.domain.Page;
 
 /**
  * @author Tsurkin Alex
