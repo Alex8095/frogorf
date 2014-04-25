@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:include="admin/fragments/layout :: head"></head>
+<body>
+	<div th:replace="admin/fragments/layout :: header"></div>
+	<div class="container-fluid">
+		<div class="row">
+			<div th:replace="admin/fragments/layout:: left"></div>
+			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+				<nav class="navbar navbar-default" role="navigation">
+				<div class="container-fluid">
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<ul class="nav navbar-nav">
+							<li><a href="../admin/pages.html" th:href="@{/admin/pages.html}" th:text="#{action.back}">back</a></li>
+						</ul>
+					</div>
+				</div>
+				</nav>
+
+				<h2>
+					<span th:if="${page['new']}" th:remove="tag" th:text="#{status.new}">New </span> <span th:text="#{menu.page}">page</span>
+				</h2>
+
+				<form class="form-horizontal" th:object="${page}" method="post" action="./page.html" th:action="@{${#httpServletRequest.servletPath}}">
+					<div class="form-group" th:classappend="${#fields.hasErrors('action')} ? error">
+						<label class="col-sm-2 control-label" th:text="#{page.action}">action</label>
+						<div class="col-sm-10">
+							<input class="form-control" type="text" th:field="*{action}" /> <span class="help-inline" th:errors="*{action}">[error]</span>
+						</div>
+					</div>
+					<div class="form-group" th:classappend="${#fields.hasErrors('controller')} ? error">
+						<label class="col-sm-2 control-label" th:text="#{page.controller}">controller</label>
+						<div class="col-sm-10">
+							<input class="form-control" type="text" th:field="*{controller}" /> <span class="help-inline" th:errors="*{controller}">[error]</span>
+						</div>
+					</div>
+					<div class="form-group" th:classappend="${#fields.hasErrors('url')} ? error">
+						<label class="col-sm-2 control-label" th:text="#{page.url}">url</label>
+						<div class="col-sm-10">
+							<input class="form-control" type="text" th:field="*{url}" /> <span class="help-inline" th:errors="*{url}">[error]</span>
+						</div>
+					</div>
+					<div class="form-group" th:classappend="${#fields.hasErrors('level')} ? error">
+						<label class="col-sm-2 control-label" th:text="#{page.level}">level</label>
+						<div class="col-sm-10">
+							<input class="form-control" type="text" th:field="*{level}" /> <span class="help-inline" th:errors="*{level}">[error]</span>
+						</div>
+					</div>
+					<div class="checkbox" style="margin: 0 0 15px 170px;">
+						<label><input type="checkbox" th:field="*{isShow}" /><span th:text="#{page.is_show}">is_show</span><span class="help-inline" th:errors="*{isShow}">[error]</span> </label>
+					</div>
+					<div class="checkbox" style="margin: 0 0 15px 170px;">
+						<label><input type="checkbox" th:field="*{isShowInMenu}" /><span th:text="#{page.is_show_in_menu}">is_show_in_menu</span><span class="help-inline"
+							th:errors="*{isShow}">[error]</span> </label>
+					</div>
+					<div class="checkbox" style="margin: 0 0 15px 170px;">
+						<label><input type="checkbox" th:field="*{isAuthorized}" /><span th:text="#{page.is_authorized}">is_show_in_menu</span><span class="help-inline"
+							th:errors="*{isAuthorized}">[error]</span> </label>
+					</div>
+					<hr />
+					<div class="form-group">
+						<label class="col-sm-2 control-label" th:text="#{page.locale.menu}">menu</label>
+						<div class="col-sm-10">
+							<input class="form-control" type="text" th:field="*{pageLocale.ru.menu}" /> <span class="help-inline" th:errors="*{pageLocale.ru.menu}">[error]</span>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<button class="btn btn-default" th:if="${page['new']}" type="submit" th:text="#{action.add}">add</button>
+							<button class="btn btn-default" th:unless="${page['new']}" type="submit" th:text="#{action.update}">update</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

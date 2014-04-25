@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:include="admin/fragments/layout :: head"></head>
+<body>
+	<div th:replace="admin/fragments/layout :: header"></div>
+	<div class="container-fluid">
+		<div class="row">
+			<div th:replace="admin/fragments/layout:: left"></div>
+			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+				<nav class="navbar navbar-default" role="navigation">
+				<div class="container-fluid">
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<ul class="nav navbar-nav">
+							<li><a href="../admin/page/new.html" th:href="@{/admin/page/new.html}" th:text="#{action.add}"></a></li>
+						</ul>
+					</div>
+				</div>
+				</nav>
+
+				<div class="table-responsive">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th th:text="#{page.url}"></th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="page : ${pages}">
+								<td>
+									<div class="checkbox">
+										<label><input type="checkbox" th:value="${page.id}" /></label>
+									</div>
+								</td>
+								<td><a class="" href="../page/edit.html" th:href="@{|page/${page.id}.html|}" th:text="${page.url}"></a></td>
+								<td><a class="btn btn-warning btn-xs" href="../admin/page/edit.html" th:href="@{|page/${page.id}/edit.html|}" th:text="#{action.edit}">edit</a> <a
+									class="btn btn-danger btn-xs" href="../admin/page/delete.html" th:href="@{|page/${page.id}/delete.html|}" th:text="#{action.delete}">delete</a></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
