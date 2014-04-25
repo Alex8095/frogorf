@@ -58,13 +58,53 @@
 						<label><input type="checkbox" th:field="*{isAuthorized}" /><span th:text="#{page.is_authorized}">is_show_in_menu</span><span class="help-inline"
 							th:errors="*{isAuthorized}">[error]</span> </label>
 					</div>
-					<hr />
-					<div class="form-group">
-						<label class="col-sm-2 control-label" th:text="#{page.locale.menu}">menu</label>
-						<div class="col-sm-10">
-							<input class="form-control" type="text" th:field="*{pageLocale.ru.menu}" /> <span class="help-inline" th:errors="*{pageLocale.ru.menu}">[error]</span>
+
+					<div th:each="entry: *{pageLocale}">
+						<h3 th:text="${entry.key}"></h3>
+						<div class="form-group" th:classappend="${#fields.hasErrors('pageLocale[__${entry.key}__].webTitle')} ? error">
+							<label class="col-sm-2 control-label" th:text="#{page.locale.web_title}"></label>
+							<div class="col-sm-10">
+								<input class="form-control" type="text" th:field="*{pageLocale[__${entry.key}__].webTitle}" /> <span class="help-inline" th:errors="*{pageLocale[__${entry.key}__].webTitle}">[error]</span>
+							</div>
+						</div>
+						<div class="form-group" th:classappend="${#fields.hasErrors('pageLocale[__${entry.key}__].webDescription')} ? error">
+							<label class="col-sm-2 control-label" th:text="#{page.locale.web_description}"></label>
+							<div class="col-sm-10">
+								<input class="form-control" type="text" th:field="*{pageLocale[__${entry.key}__].webDescription}" /> <span class="help-inline" th:errors="*{pageLocale[__${entry.key}__].webDescription}">[error]</span>
+							</div>
+						</div>
+						<div class="form-group" th:classappend="${#fields.hasErrors('pageLocale[__${entry.key}__].webKeywords')} ? error">
+							<label class="col-sm-2 control-label" th:text="#{page.locale.web_keywords}"></label>
+							<div class="col-sm-10">
+								<input class="form-control" type="text" th:field="*{pageLocale[__${entry.key}__].webKeywords}" /> <span class="help-inline" th:errors="*{pageLocale[__${entry.key}__].webKeywords}">[error]</span>
+							</div>
+						</div>
+						<div class="form-group" th:classappend="${#fields.hasErrors('pageLocale[__${entry.key}__].menu')} ? error">
+							<label class="col-sm-2 control-label" th:text="#{page.locale.menu}"></label>
+							<div class="col-sm-10">
+								<input class="form-control" type="text" th:field="*{pageLocale[__${entry.key}__].menu}" /> <span class="help-inline" th:errors="*{pageLocale[__${entry.key}__].menu}">[error]</span>
+							</div>
+						</div>
+						<div class="form-group" th:classappend="${#fields.hasErrors('pageLocale[__${entry.key}__].title')} ? error">
+							<label class="col-sm-2 control-label" th:text="#{page.locale.title}"></label>
+							<div class="col-sm-10">
+								<input class="form-control" type="text" th:field="*{pageLocale[__${entry.key}__].title}" /> <span class="help-inline" th:errors="*{pageLocale[__${entry.key}__].title}">[error]</span>
+							</div>
+						</div>
+						<div class="form-group" th:classappend="${#fields.hasErrors('pageLocale[__${entry.key}__].description')} ? error">
+							<label class="col-sm-2 control-label" th:text="#{page.locale.description}"></label>
+							<div class="col-sm-10">
+								<input class="form-control" type="text" th:field="*{pageLocale[__${entry.key}__].description}" /> <span class="help-inline" th:errors="*{pageLocale[__${entry.key}__].description}">[error]</span>
+							</div>
+						</div>
+						<div class="form-group" th:classappend="${#fields.hasErrors('pageLocale[__${entry.key}__].content')} ? error">
+							<label class="col-sm-2 control-label" th:text="#{page.locale.content}"></label>
+							<div class="col-sm-10">
+								<input class="form-control" type="text" th:field="*{pageLocale[__${entry.key}__].content}" /> <span class="help-inline" th:errors="*{pageLocale[__${entry.key}__].content}">[error]</span>
+							</div>
 						</div>
 					</div>
+
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
 							<button class="btn btn-default" th:if="${page['new']}" type="submit" th:text="#{action.add}">add</button>

@@ -150,7 +150,7 @@ public class PageServiceTest extends AbstractBaseServiceTest {
 		/* page locale */
 		PageLocale pageLocale = new PageLocale();
 		pageLocale.setContent("content");
-		pageLocale.setDescrition("descrition");
+		pageLocale.setDescription("descrition");
 		pageLocale.setMenu("menu");
 		pageLocale.setTitle("title");
 		pageLocale.setWebDescription("webDescription");
@@ -187,14 +187,14 @@ public class PageServiceTest extends AbstractBaseServiceTest {
 		assertEquals(page.getPage().getAction(), "parent");
 		/* test object locale */
 		assertEquals(page.getPageLocale().get("ru").getContent(), "content");
-		assertEquals(page.getPageLocale().get("ru").getDescrition(), "descrition");
+		assertEquals(page.getPageLocale().get("ru").getDescription(), "descrition");
 		assertEquals(page.getPageLocale().get("ru").getMenu(), "menu");
 		assertEquals(page.getPageLocale().get("ru").getTitle(), "title");
 		assertEquals(page.getPageLocale().get("ru").getWebDescription(), "webDescription");
 		assertEquals(page.getPageLocale().get("ru").getWebKeywords(), "webKeywords");
 		assertEquals(page.getPageLocale().get("ru").getWebTitle(), "webTitle");
 		assertEquals(page.getCurrentPageLocale().getContent(), "content");
-		assertEquals(page.getCurrentPageLocale().getDescrition(), "descrition");
+		assertEquals(page.getCurrentPageLocale().getDescription(), "descrition");
 		assertEquals(page.getCurrentPageLocale().getMenu(), "menu");
 		assertEquals(page.getCurrentPageLocale().getTitle(), "title");
 		assertEquals(page.getCurrentPageLocale().getWebDescription(), "webDescription");

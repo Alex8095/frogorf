@@ -9,6 +9,7 @@ import java.util.Map;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -58,7 +59,7 @@ public class Page extends BaseEntity {
 	private List<Page> pages;
 
 	@JoinTable(name = "page_locale")
-	@CollectionOfElements(targetElement = PageLocale.class)
+	@CollectionOfElements(targetElement = PageLocale.class, fetch = FetchType.EAGER)
 	@MapKey(targetElement = String.class, columns = @Column(name = "language_code"))
 	private Map<String, PageLocale> pageLocale = new HashMap<String, PageLocale>();
 

@@ -22,7 +22,7 @@ public class PageLocale {
 	@Column
 	private String title;
 	@Column
-	private String descrition;
+	private String description;
 	@Column
 	private String content;
 
@@ -76,14 +76,12 @@ public class PageLocale {
 		this.title = title;
 	}
 
-	/** @return the descrition */
-	public String getDescrition() {
-		return descrition;
+	public String getDescription() {
+		return description;
 	}
 
-	/** @param descrition the descrition to set */
-	public void setDescrition(String descrition) {
-		this.descrition = descrition;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	/** @return the content */
@@ -97,5 +95,9 @@ public class PageLocale {
 	}
 
 	public PageLocale() {
+	}
+
+	public PageLocale(String menu) {
+		this.menu = menu;
 	}
 }

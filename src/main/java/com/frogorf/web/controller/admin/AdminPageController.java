@@ -1,6 +1,9 @@
 package com.frogorf.web.controller.admin;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.validation.Valid;
 
@@ -48,7 +51,22 @@ public class AdminPageController {
 	@RequestMapping(value = "/page/new", method = RequestMethod.GET)
 	public String initCreationForm(Model model) {
 		Page page = new Page();
-		page.getPageLocale().put("ru", new PageLocale());
+		if(page.isNew()) {
+			PageLocale pageLocale = new PageLocale();
+			Map<String, PageLocale> locales = new HashMap<String, PageLocale>();
+			pageLocale.setMenu("menu ru");
+			locales.put("ru", pageLocale);
+			pageLocale = new PageLocale();
+			pageLocale.setMenu("menu en");
+			locales.put("en", pageLocale);
+			page.setPageLocale(locales);
+		}
+		
+		for(Entry<String, PageLocale> entry : page.getPageLocale().entrySet()) {
+			System.out.println(entry.getKey());
+			System.out.println(entry.getValue().getMenu());
+		}
+
 		model.addAttribute(page);
 		return "admin/page/form";
 	}
