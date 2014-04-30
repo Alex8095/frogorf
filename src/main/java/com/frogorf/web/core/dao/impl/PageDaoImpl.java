@@ -16,10 +16,8 @@ import org.springframework.stereotype.Repository;
 import com.frogorf.web.core.dao.PageDao;
 import com.frogorf.web.core.domain.Page;
 
-/**
- * @author Tsurkin Alex
- * @version
- */
+/** @author Tsurkin Alex
+ * @version */
 @Repository("coreDao")
 public class PageDaoImpl implements PageDao {
 
@@ -31,11 +29,7 @@ public class PageDaoImpl implements PageDao {
 		return sessionFactory.getCurrentSession().createQuery("from Page").list();
 	}
 
-	/*
-	 * @see
-	 * com.frogorf.web.core.dao.CoreDao#findPagesByPage(com.frogorf.web.core
-	 * .domain.Page)
-	 */
+	/* @see com.frogorf.web.core.dao.CoreDao#findPagesByPage(com.frogorf.web.core .domain.Page) */
 	public List<Page> findPagesByPage(Page page) {
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Page.class);
 		if (page != null) {
@@ -52,11 +46,7 @@ public class PageDaoImpl implements PageDao {
 		return criteria.list();
 	}
 
-	/*
-	 * @see
-	 * com.frogorf.web.core.dao.CoreDao#findPagesByPage(com.frogorf.web.core
-	 * .domain.Page, org.springframework.data.domain.Pageable)
-	 */
+	/* @see com.frogorf.web.core.dao.CoreDao#findPagesByPage(com.frogorf.web.core .domain.Page, org.springframework.data.domain.Pageable) */
 	public org.springframework.data.domain.Page<Page> findPagesByPage(Page page, Pageable pageable) {
 		List<Page> l = findPagesByPage(page);
 		return new PageImpl<Page>(l, pageable, l.size());
@@ -67,20 +57,13 @@ public class PageDaoImpl implements PageDao {
 		return (Page) sessionFactory.getCurrentSession().get(Page.class, id);
 	}
 
-	/*
-	 * @see
-	 * com.frogorf.web.core.dao.CoreDao#findPageByPage(com.frogorf.web.core.
-	 * domain.Page)
-	 */
+	/* @see com.frogorf.web.core.dao.CoreDao#findPageByPage(com.frogorf.web.core. domain.Page) */
 	public Page findPageByPage(Page page) {
-		return null;
+		List<Page> l = findPagesByPage(page);
+		return (l.size() > 0 ? l.get(0) : null);
 	}
 
-	/*
-	 * @see
-	 * com.frogorf.web.core.dao.CoreDao#savePage(com.frogorf.web.core.domain
-	 * .Page)
-	 */
+	/* @see com.frogorf.web.core.dao.CoreDao#savePage(com.frogorf.web.core.domain .Page) */
 	public void savePage(Page page) {
 		sessionFactory.getCurrentSession().saveOrUpdate(page);
 	}

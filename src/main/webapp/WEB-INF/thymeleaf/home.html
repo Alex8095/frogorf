@@ -7,7 +7,21 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-				<h1 class="page-header">Home</h1>
+				<h1 class="page-header" th:text="#{home_text}">Home</h1>
+				
+				<div class="menu">
+					<a th:each="page : ${session.pageMenu}" class="item" th:classappend="${page.url} == ${session.currentPage.url} ? 'active'" th:href="${page.url} != '' ? @{|${page.url}.html|} : @{|/|}" th:title="${page.pageLocale[__${#locale.language}__].title}" th:text="${page.pageLocale[__${#locale.language}__].menu}"></a>
+				</div>
+				
+				<table class="table table-striped" style="width: 600px;">
+					<tr>
+						<td><b th:text="${session.currentPage.url}">url</b></td>
+						<td><b th:text="${session.currentPage.action}">url</b></td>
+						<td><b th:text="${session.currentPage.controller}">url</b></td>
+						<td><b th:text="${session.currentPage.pageLocale[__${#locale.language}__].menu}">url</b></td>
+					</tr>
+				</table>
+						<span th:text="${#locale.language}">US</span>
 			</div>
 		</div>
 	</div>

@@ -5,6 +5,8 @@ package com.frogorf.web.controller;
 
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -25,9 +27,14 @@ public class HomeController {
 
 	/** Simply selects the home view to render by returning its name. */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Model model, Locale locale) {
+	public String home(Model model, Locale locale, HttpServletRequest request ) {
 		logger.info("Welcome home!" + locale);
-		System.out.println("Welcome home!" + locale);
+		System.out.println("Welcome home!" + locale + "request" + request.getParameter("lang_code"));
+		return "home";
+	}
+	
+	@RequestMapping(value = "/next", method = RequestMethod.GET)
+	public String next(Model model, Locale locale, HttpServletRequest request ) {
 		return "home";
 	}
 }

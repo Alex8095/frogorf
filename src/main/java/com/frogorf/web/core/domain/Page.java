@@ -53,7 +53,7 @@ public class Page extends BaseEntity {
 
 	@ManyToOne
 	@JoinTable(name = "page_parent", joinColumns = @JoinColumn(name = "page_id"), inverseJoinColumns = @JoinColumn(name = "parent_id"))
-	private Page page;
+	private Page parentPage;
 	@ManyToMany
 	@JoinTable(name = "page_parent", joinColumns = @JoinColumn(name = "parent_id"), inverseJoinColumns = @JoinColumn(name = "page_id"))
 	private List<Page> pages;
@@ -64,6 +64,13 @@ public class Page extends BaseEntity {
 	private Map<String, PageLocale> pageLocale = new HashMap<String, PageLocale>();
 
 	public Page() {
+	}
+
+	public Page(String controller, String action, Boolean isShow) {
+		super();
+		this.controller = controller;
+		this.action = action;
+		this.isShow = isShow;
 	}
 
 	/** @return the controller */
@@ -136,14 +143,12 @@ public class Page extends BaseEntity {
 		this.isShowInMenu = isShowInMenu;
 	}
 
-	/** @return the page */
-	public Page getPage() {
-		return page;
+	public Page getParentPage() {
+		return parentPage;
 	}
 
-	/** @param page the page to set */
-	public void setPage(Page page) {
-		this.page = page;
+	public void setParentPage(Page parentPage) {
+		this.parentPage = parentPage;
 	}
 
 	/** @return the pages */
@@ -176,7 +181,18 @@ public class Page extends BaseEntity {
 		this.domains = domains;
 	}
 
+	public PageLocale getCurrentPageLocale(String localeCode) {
+		return getPageLocale().get(localeCode);
+	}
+
 	public PageLocale getCurrentPageLocale() {
 		return getPageLocale().get(getLocaleLanguage());
 	}
+
+	@Override
+	public String toString() {
+		return "Page [controller=" + controller + ", action=" + action + ", url=" + url + ", level=" + level + ", isShow=" + isShow + ", isAuthorized=" + isAuthorized + ", isShowInMenu="
+				+ isShowInMenu + ", pageLocale=" + pageLocale + "]";
+	}
+
 }

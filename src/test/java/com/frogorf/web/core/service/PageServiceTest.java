@@ -169,7 +169,7 @@ public class PageServiceTest extends AbstractBaseServiceTest {
 		page.setUrl("url");
 		page.setDomains(domains);
 		page.setPageLocale(pageLocales);
-		page.setPage(pageParent);
+		page.setParentPage(pageParent);
 		coreService.savePage(page);
 
 		page = coreService.findPageById(page.getId());
@@ -184,7 +184,7 @@ public class PageServiceTest extends AbstractBaseServiceTest {
 		/* test object domain */
 		assertEquals(page.getDomains().get(0).getUrl(), "url");
 		/* test object parent */
-		assertEquals(page.getPage().getAction(), "parent");
+		assertEquals(page.getParentPage().getAction(), "parent");
 		/* test object locale */
 		assertEquals(page.getPageLocale().get("ru").getContent(), "content");
 		assertEquals(page.getPageLocale().get("ru").getDescription(), "descrition");

@@ -24,6 +24,9 @@
 							<tr>
 								<th>#</th>
 								<th th:text="#{page.url}"></th>
+								<th th:text="#{page.controller}"></th>
+								<th th:text="#{page.action}"></th>
+								<th th:text="#{page.is_show}"></th>
 								<th></th>
 							</tr>
 						</thead>
@@ -35,6 +38,9 @@
 									</div>
 								</td>
 								<td><a class="" href="../page/edit.html" th:href="@{|page/${page.id}.html|}" th:text="${page.url}"></a></td>
+								<td th:text="${page.controller}"></td>
+								<td th:text="${page.action}"></td>
+								<td th:text="${page.isShow} ? #{page.is_show.true} : #{page.is_show.false}">page.is_show</td>
 								<td><a class="btn btn-warning btn-xs" href="../admin/page/edit.html" th:href="@{|page/${page.id}/edit.html|}" th:text="#{action.edit}">edit</a> <a
 									class="btn btn-danger btn-xs" href="../admin/page/delete.html" th:href="@{|page/${page.id}/delete.html|}" th:text="#{action.delete}">delete</a></td>
 							</tr>

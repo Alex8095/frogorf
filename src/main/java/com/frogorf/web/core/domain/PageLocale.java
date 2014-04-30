@@ -100,4 +100,11 @@ public class PageLocale {
 	public PageLocale(String menu) {
 		this.menu = menu;
 	}
+
+	@Override
+	public String toString() {
+		return "PageLocale [webTitle=" + webTitle + ", webDescription=" + webDescription + ", webKeywords=" + webKeywords + ", menu=" + menu + ", title=" + title + ", description=" + description
+				+ ", content=" + content + "]";
+	}
+
 }

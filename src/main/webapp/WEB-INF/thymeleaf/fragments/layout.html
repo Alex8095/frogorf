@@ -4,9 +4,10 @@
 <head th:fragment="head">
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="" />
+<title th:text="${session.currentPageLocale.webTitle}">title</title>
+<meta name="keywords" th:content="${session.currentPageLocale.webKeywords}" content="keywords" /> 
+<meta name="description" th:content="${session.currentPageLocale.webDescription}" content="description" /> 
 <meta name="author" content="Alex Tsurkin" />
-<title>1 Yummy Noodle Bar</title>
 <link href="resources/themes/bootstrap/css/theme.css" th:href="${#themes.code('styleSheet')}" rel="stylesheet" />
 <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

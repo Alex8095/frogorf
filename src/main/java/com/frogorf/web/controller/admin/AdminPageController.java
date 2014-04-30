@@ -61,13 +61,8 @@ public class AdminPageController {
 			locales.put("en", pageLocale);
 			page.setPageLocale(locales);
 		}
-		
-		for(Entry<String, PageLocale> entry : page.getPageLocale().entrySet()) {
-			System.out.println(entry.getKey());
-			System.out.println(entry.getValue().getMenu());
-		}
-
 		model.addAttribute(page);
+		model.addAttribute("pages", pageService.findPages());
 		return "admin/page/form";
 	}
 
@@ -85,6 +80,7 @@ public class AdminPageController {
 	@RequestMapping(value = "/page/{pageId}/edit", method = RequestMethod.GET)
 	public String initUpdatePageForm(@PathVariable("pageId") int pageId, Model model) {
 		model.addAttribute("page", this.pageService.findPageById(pageId));
+		model.addAttribute("pages", pageService.findPages());
 		return "admin/page/form";
 	}
 
