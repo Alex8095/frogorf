@@ -22,6 +22,7 @@ import org.hibernate.annotations.MapKey;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import com.frogorf.domain.BaseEntity;
+import com.frogorf.domain.BaseLocale;
 
 /** @author Tsurkin Alex
  * @version */
@@ -59,9 +60,9 @@ public class Page extends BaseEntity {
 	private List<Page> pages;
 
 	@JoinTable(name = "page_locale")
-	@CollectionOfElements(targetElement = PageLocale.class, fetch = FetchType.EAGER)
+	@CollectionOfElements(targetElement = BaseLocale.class, fetch = FetchType.EAGER)
 	@MapKey(targetElement = String.class, columns = @Column(name = "language_code"))
-	private Map<String, PageLocale> pageLocale = new HashMap<String, PageLocale>();
+	private Map<String, BaseLocale> pageLocale = new HashMap<String, BaseLocale>();
 
 	public Page() {
 	}
@@ -162,12 +163,12 @@ public class Page extends BaseEntity {
 	}
 
 	/** @return the pageLocale */
-	public Map<String, PageLocale> getPageLocale() {
+	public Map<String, BaseLocale> getPageLocale() {
 		return pageLocale;
 	}
 
 	/** @param pageLocale the pageLocale to set */
-	public void setPageLocale(Map<String, PageLocale> pageLocale) {
+	public void setPageLocale(Map<String, BaseLocale> pageLocale) {
 		this.pageLocale = pageLocale;
 	}
 
@@ -181,11 +182,11 @@ public class Page extends BaseEntity {
 		this.domains = domains;
 	}
 
-	public PageLocale getCurrentPageLocale(String localeCode) {
+	public BaseLocale getCurrentPageLocale(String localeCode) {
 		return getPageLocale().get(localeCode);
 	}
 
-	public PageLocale getCurrentPageLocale() {
+	public BaseLocale getCurrentPageLocale() {
 		return getPageLocale().get(getLocaleLanguage());
 	}
 

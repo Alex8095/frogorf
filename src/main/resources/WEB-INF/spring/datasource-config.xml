@@ -21,8 +21,8 @@
 				<value>com.frogorf.dictionary.domain</value>
 				<value>com.frogorf.domain</value>
 				<value>com.frogorf.web.core.domain</value>
-				<value>com.frogorf.localize.model</value>
 				<value>com.frogorf.security.domain</value>
+				<value>com.frogorf.catalog.domain</value>
 			</list>
 		</property>
 		<!-- <property name="configLocation"> <value>classpath:hibernate.cfg.xml</value> </property> -->

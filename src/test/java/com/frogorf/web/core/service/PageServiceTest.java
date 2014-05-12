@@ -18,10 +18,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 
+import com.frogorf.domain.BaseLocale;
 import com.frogorf.service.AbstractBaseServiceTest;
 import com.frogorf.web.core.domain.Domain;
 import com.frogorf.web.core.domain.Page;
-import com.frogorf.web.core.domain.PageLocale;
 
 /**
  * @author Tsurkin Alex
@@ -148,7 +148,7 @@ public class PageServiceTest extends AbstractBaseServiceTest {
 		pageParent.setAction("parent");
 		coreService.savePage(pageParent);
 		/* page locale */
-		PageLocale pageLocale = new PageLocale();
+		BaseLocale pageLocale = new BaseLocale();
 		pageLocale.setContent("content");
 		pageLocale.setDescription("descrition");
 		pageLocale.setMenu("menu");
@@ -156,7 +156,7 @@ public class PageServiceTest extends AbstractBaseServiceTest {
 		pageLocale.setWebDescription("webDescription");
 		pageLocale.setWebKeywords("webKeywords");
 		pageLocale.setWebTitle("webTitle");
-		Map<String, PageLocale> pageLocales = new HashMap<String, PageLocale>();
+		Map<String, BaseLocale> pageLocales = new HashMap<String, BaseLocale>();
 		pageLocales.put("ru", pageLocale);
 		/* page */
 		Page page = new Page();

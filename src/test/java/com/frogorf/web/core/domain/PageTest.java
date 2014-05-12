@@ -14,6 +14,8 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.frogorf.domain.BaseLocale;
+
 /**
  * @author Tsurkin Alex
  * @version
@@ -30,7 +32,7 @@ public class PageTest {
 		List<Domain> domains = new ArrayList<Domain>();
 		domains.add(domain);
 		/* page locale */
-		PageLocale pageLocale = new PageLocale();
+		BaseLocale pageLocale = new BaseLocale();
 		pageLocale.setContent("content");
 		pageLocale.setDescription("descrition");
 		pageLocale.setMenu("menu");
@@ -38,7 +40,7 @@ public class PageTest {
 		pageLocale.setWebDescription("webDescription");
 		pageLocale.setWebKeywords("webKeywords");
 		pageLocale.setWebTitle("webTitle");
-		Map<String, PageLocale> pageLocales = new HashMap<String, PageLocale>();
+		Map<String, BaseLocale> pageLocales = new HashMap<String, BaseLocale>();
 		pageLocales.put("ru", pageLocale);
 		/* page */
 		Page page = new Page();

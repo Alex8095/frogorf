@@ -3,7 +3,6 @@ package com.frogorf.web.controller.admin;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import javax.validation.Valid;
 
@@ -21,8 +20,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.frogorf.domain.BaseLocale;
 import com.frogorf.web.core.domain.Page;
-import com.frogorf.web.core.domain.PageLocale;
 import com.frogorf.web.core.service.PageService;
 
 /** Handles requests for the application home page. */
@@ -52,11 +51,11 @@ public class AdminPageController {
 	public String initCreationForm(Model model) {
 		Page page = new Page();
 		if(page.isNew()) {
-			PageLocale pageLocale = new PageLocale();
-			Map<String, PageLocale> locales = new HashMap<String, PageLocale>();
+			BaseLocale pageLocale = new BaseLocale();
+			Map<String, BaseLocale> locales = new HashMap<String, BaseLocale>();
 			pageLocale.setMenu("menu ru");
 			locales.put("ru", pageLocale);
-			pageLocale = new PageLocale();
+			pageLocale = new BaseLocale();
 			pageLocale.setMenu("menu en");
 			locales.put("en", pageLocale);
 			page.setPageLocale(locales);
