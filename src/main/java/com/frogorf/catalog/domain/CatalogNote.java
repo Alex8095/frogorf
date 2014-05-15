@@ -40,10 +40,10 @@ public class CatalogNote extends BaseEntity {
 	private Map<String, BaseLocale> catalogNoteLocale = new HashMap<String, BaseLocale>();
 
 	@ManyToOne
-	@JoinTable(name = "catalog_note_parent", joinColumns = @JoinColumn(name = "catalog_id"), inverseJoinColumns = @JoinColumn(name = "parent_id"))
+	@JoinTable(name = "catalog_note_parent", joinColumns = @JoinColumn(name = "catalog_note_id"), inverseJoinColumns = @JoinColumn(name = "parent_id"))
 	private CatalogNote parentCatalogNote;
 	@ManyToMany
-	@JoinTable(name = "catalog_note_parent", joinColumns = @JoinColumn(name = "parent_id"), inverseJoinColumns = @JoinColumn(name = "catalog_id"))
+	@JoinTable(name = "catalog_note_parent", joinColumns = @JoinColumn(name = "parent_id"), inverseJoinColumns = @JoinColumn(name = "catalog_note_id"))
 	private List<CatalogNote> catalogNotes;
 
 	public String getUrl() {
@@ -115,7 +115,7 @@ public class CatalogNote extends BaseEntity {
 
 	@Override
 	public String toString() {
-		return "CatalogNote [url=" + url + ", level=" + level + ", isShow=" + isShow + ", isShowInMenu=" + isShowInMenu + ", catalogLocale=" + catalogNoteLocale + "]";
+		return "CatalogNote [url=" + url + ", level=" + level + ", isShow=" + isShow + ", isShowInMenu=" + isShowInMenu + ", catalogNoteLocale=" + catalogNoteLocale + "]";
 	}
 
 }

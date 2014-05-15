@@ -117,6 +117,7 @@ public class CatalogServiceTest extends AbstractBaseServiceTest {
 		catalogLocale.setWebTitle("webTitle");
 		Map<String, BaseLocale> catalogLocales = new HashMap<String, BaseLocale>();
 		catalogLocales.put("ru", catalogLocale);
+		catalogLocales.put("en", new BaseLocale("menu en"));
 		/* catalog */
 		CatalogNote catalogNote = new CatalogNote();
 		catalogNote.setIsShow(false);
@@ -140,6 +141,7 @@ public class CatalogServiceTest extends AbstractBaseServiceTest {
 		// /* test object parent */
 		assertEquals(catalogNote.getParentCatalogNote().getUrl(), "parent");
 		// /* test object locale */
+		assertEquals(catalogNote.getCatalogNoteLocale().get("en").getMenu(), "menu en");
 		assertEquals(catalogNote.getCatalogNoteLocale().get("ru").getContent(), "content");
 		assertEquals(catalogNote.getCatalogNoteLocale().get("ru").getDescription(), "descrition");
 		assertEquals(catalogNote.getCatalogNoteLocale().get("ru").getMenu(), "menu");
@@ -154,6 +156,9 @@ public class CatalogServiceTest extends AbstractBaseServiceTest {
 		assertEquals(catalogNote.getCurrentCatalogNoteLocale().getWebDescription(), "webDescription");
 		assertEquals(catalogNote.getCurrentCatalogNoteLocale().getWebKeywords(), "webKeywords");
 		assertEquals(catalogNote.getCurrentCatalogNoteLocale().getWebTitle(), "webTitle");
+		
+		logger.info(catalogNote.toString());
+		logger.info(catalogNote.getCatalogNoteLocale().toString());
 	}
 
 	@Test

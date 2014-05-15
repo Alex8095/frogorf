@@ -5,10 +5,12 @@ package com.frogorf.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.MappedSuperclass;
 
 /** @author Tsurkin Alex
  * @version */
 @Embeddable
+@MappedSuperclass
 public class BaseLocale {
 
 	@Column(name = "web_title")
