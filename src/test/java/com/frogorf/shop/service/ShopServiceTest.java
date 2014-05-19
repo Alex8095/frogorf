@@ -27,10 +27,9 @@ public class ShopServiceTest extends AbstractBaseServiceTest {
 	@Autowired
 	protected ShopService shopService;
 
-//	@Autowired
-//	protected UserService userService;
+	@Autowired
+	protected UserService userService;
 
-	
 	private static final Logger logger = LoggerFactory.getLogger(ShopServiceTest.class);
 
 	private static final Product product = null;
@@ -268,13 +267,19 @@ public class ShopServiceTest extends AbstractBaseServiceTest {
 
 	@Test
 	public void testFindOrdersByOrder() {
+		User user = new User();
+		user.setLogin("testFindOrdersByOrder");
+		user.setPassword("password");
+		userService.saveUser(user);
 		Order item = new Order();
 		item.setCode("testFindOrdersByOrder 1");
 		shopService.saveOrder(item);
 		item.setCode("testFindOrdersByOrder");
+		item.setUser(user);
 		shopService.saveOrder(item);
 		List<Order> list = shopService.findOrdersByOrder(item);
 		assertEquals(1, list.size());
+		assertEquals(list.get(0).getUser().getLogin(), "testFindOrdersByOrder");
 	}
 
 	@Test
@@ -336,16 +341,17 @@ public class ShopServiceTest extends AbstractBaseServiceTest {
 	@Test
 	public void testSaveOrder() {
 		User user = new User();
-		user.setLogin("login");
+		user.setLogin("testSaveOrderLogin");
 		user.setPassword("password");
-//		userService.saveUser(user);
+		userService.saveUser(user);
 		Order order = new Order();
 		order.setCode("code");
-//		order.setUser(user);
+		order.setUser(user);
 		shopService.saveOrder(order);
 		order = shopService.findOrderById(order.getId());
 		/* test object */
 		assertEquals(order.getCode(), "code");
+		assertEquals(order.getUser().getLogin(), "testSaveOrderLogin");
 	}
 
 	@Test
