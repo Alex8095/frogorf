@@ -41,6 +41,10 @@ public class Order extends BaseEntity {
 	@Column(name = "date_delivery")
 	private Date dateDelivery;
 
+	@OneToMany
+	@JoinTable(name = "order_history", joinColumns = @JoinColumn(name = "order_id"), inverseJoinColumns = @JoinColumn(name = "id"))
+	private List<OrderHistory> orderHistories;
+
 	public List<OrderProduct> getOrderProducts() {
 		return orderProducts;
 	}
@@ -87,6 +91,14 @@ public class Order extends BaseEntity {
 
 	public void setCode(String code) {
 		this.code = code;
+	}
+
+	public List<OrderHistory> getOrderHistories() {
+		return orderHistories;
+	}
+
+	public void setOrderHistories(List<OrderHistory> orderHistories) {
+		this.orderHistories = orderHistories;
 	}
 
 	public Order() {

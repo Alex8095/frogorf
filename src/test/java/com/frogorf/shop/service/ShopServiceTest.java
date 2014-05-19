@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 
@@ -18,6 +19,7 @@ import com.frogorf.security.domain.User;
 import com.frogorf.security.service.UserService;
 import com.frogorf.service.AbstractBaseServiceTest;
 import com.frogorf.shop.domain.Order;
+import com.frogorf.shop.domain.OrderHistory;
 import com.frogorf.shop.domain.Product;
 import com.frogorf.shop.domain.Warehouse;
 
@@ -362,6 +364,34 @@ public class ShopServiceTest extends AbstractBaseServiceTest {
 		int itemId = item.getId();
 		shopService.deleteOrder(itemId);
 		assertNull(shopService.findOrderById(itemId));
+	}
+
+	@Test
+	public void testFindOrderHistorys() {
+	}
+
+	@Test
+	public void testFindOrderHistorysByOrderHistory() {
+	}
+
+	@Test
+	public void testFindOrderHistorysByOrderHistoryHistory() {
+	}
+
+	@Test
+	public void testFindOrderHistoryById() {
+	}
+
+	@Test
+	public void testFindOrderHistoryByOrderHistory() {
+	}
+
+	@Test
+	public void testSaveOrderHistory() {
+	}
+
+	@Test
+	public void testDeleteOrderHistory() {
 	}
 
 }

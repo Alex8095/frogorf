@@ -12,9 +12,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.frogorf.shop.dao.OrderDao;
+import com.frogorf.shop.dao.OrderHistoryDao;
 import com.frogorf.shop.dao.ProductDao;
 import com.frogorf.shop.dao.WarehouseDao;
 import com.frogorf.shop.domain.Order;
+import com.frogorf.shop.domain.OrderHistory;
 import com.frogorf.shop.domain.Product;
 import com.frogorf.shop.domain.Warehouse;
 import com.frogorf.shop.service.ShopService;
@@ -30,6 +32,8 @@ public class ShopServiceImpl implements ShopService {
 	private WarehouseDao warehouseDao;
 	@Autowired
 	private OrderDao orderDao;
+	@Autowired
+	private OrderHistoryDao orderHistoryDao;
 
 	@Override
 	@Transactional
@@ -155,6 +159,48 @@ public class ShopServiceImpl implements ShopService {
 	@Transactional
 	public void deleteOrder(int id) {
 		orderDao.deleteOrder(id);
+	}
+
+	@Override
+	@Transactional
+	public List<OrderHistory> findOrderHistorys() {
+		return orderHistoryDao.findOrderHistorys();
+	}
+
+	@Override
+	@Transactional
+	public List<OrderHistory> findOrderHistorysByOrderHistory(OrderHistory orderHistory) {
+		return orderHistoryDao.findOrderHistorysByOrderHistory(orderHistory);
+	}
+
+	@Override
+	@Transactional
+	public Page<OrderHistory> findOrderHistorysByOrderHistory(OrderHistory orderHistory, Pageable pageable) {
+		return findOrderHistorysByOrderHistory(orderHistory, pageable);
+	}
+
+	@Override
+	@Transactional
+	public OrderHistory findOrderHistoryById(int id) {
+		return orderHistoryDao.findOrderHistoryById(id);
+	}
+
+	@Override
+	@Transactional
+	public OrderHistory findOrderHistoryByOrderHistory(OrderHistory orderHistory) {
+		return orderHistoryDao.findOrderHistoryByOrderHistory(orderHistory);
+	}
+
+	@Override
+	@Transactional
+	public void saveOrderHistory(OrderHistory orderHistory) {
+		orderHistoryDao.saveOrderHistory(orderHistory);
+	}
+
+	@Override
+	@Transactional
+	public void deleteOrderHistory(int id) {
+		orderHistoryDao.deleteOrderHistory(id);
 	}
 
 }
