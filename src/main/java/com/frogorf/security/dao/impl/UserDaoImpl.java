@@ -40,4 +40,26 @@ public class UserDaoImpl implements UserDao {
 		} else
 			return null;
 	}
+
+	@Override
+	public void saveUser(User user) {
+		sessionFactory.getCurrentSession().saveOrUpdate(user);
+	}
+
+	@Override
+	public List<User> findUsers() {
+		return sessionFactory.getCurrentSession().createQuery("from User").list();
+	}
+
+	@Override
+	public User findUserById(int id) {
+		return (User) sessionFactory.getCurrentSession().get(User.class, id);
+	}
+
+	@Override
+	public void deleteUser(int id) {
+		sessionFactory.getCurrentSession().delete(findUserById(id));
+	}
+	
+	
 }

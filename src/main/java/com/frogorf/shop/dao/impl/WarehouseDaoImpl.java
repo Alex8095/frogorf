@@ -34,6 +34,8 @@ public class WarehouseDaoImpl implements WarehouseDao {
 	public List<Warehouse> findWarehousesByWarehouse(Warehouse warehouse) {
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Warehouse.class);
 		if (warehouse != null) {
+			if (warehouse.getName() != null)
+				criteria.add(Restrictions.eq("name", warehouse.getName()));
 		}
 		return criteria.list();
 	}

@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -30,9 +31,13 @@ public class OrderDaoImpl implements OrderDao {
 	}
 
 	@Override
-	public List<Order> findOrdersByOrder(Order Order) {
+	public List<Order> findOrdersByOrder(Order order) {
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Order.class);
-		if (Order != null) {
+		if (order != null) {
+			if (order.getCode() != null)
+				criteria.add(Restrictions.eq("code", order.getCode()));
+			if (order.getUser() != null)
+				criteria.add(Restrictions.eq("user", order.getUser()));
 		}
 		return criteria.list();
 	}
