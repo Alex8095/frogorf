@@ -24,6 +24,7 @@
 				<value>com.frogorf.security.domain</value>
 				<value>com.frogorf.catalog.domain</value>
 				<value>com.frogorf.shop.domain</value>
+				<value>com.frogorf.parenttest</value>
 				<value>com.frogorf.shop.order.domain</value>
 			</list>
 		</property>
@@ -34,6 +35,10 @@
 				<prop key="hibernate.dialect">${jdbc.dialect}</prop>
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.hbm2ddl.auto">${jdbc.hbm2ddl.auto}</prop>
+				<!-- <prop key="hibernate.cache.use_query_cache">false</prop>
+				<prop key="hibernate.cache.use_second_level_cache">false</prop>
+				<prop key="hibernate.cache.use_structured_entries">false</prop>
+				<prop key="hibernate.cache.generate_statistics ">false</prop> -->
 				<!-- <prop key="hibernate.enable_lazy_load_no_trans">true</prop> -->
 				<prop key="hibernate.connection.charSet">UTF-8</prop>
 				<!-- <prop key="hibernate.current_session_context_class">thread</prop> -->

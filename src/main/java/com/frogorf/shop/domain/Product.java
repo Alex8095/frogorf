@@ -1,6 +1,5 @@
 package com.frogorf.shop.domain;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +15,9 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.CollectionOfElements;
 import org.hibernate.annotations.MapKey;
+import org.hibernate.annotations.Type;
+import org.joda.time.DateTime;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.frogorf.catalog.domain.CatalogNote;
 import com.frogorf.domain.BaseEntity;
@@ -32,7 +34,13 @@ public class Product extends BaseEntity {
 	@Column(name = "old_price")
 	private Double oldPrice;
 	@Column(name = "date_create")
-	private Date dateCreate;
+	@Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
+	@DateTimeFormat(pattern = "dd.MM.yyyy hh:mm")
+	private DateTime dateCreate;
+	@Column(name = "date_update")
+	@Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
+	@DateTimeFormat(pattern = "dd.MM.yyyy hh:mm")
+	private DateTime dateUpdate;
 	@Column(name = "count_in_warehouse")
 	private Long countInWarehouse;
 	@Column(name = "is_hot")
@@ -77,12 +85,28 @@ public class Product extends BaseEntity {
 		this.oldPrice = oldPrice;
 	}
 
-	public Date getDateCreate() {
+	public DateTime getDateCreate() {
 		return dateCreate;
 	}
+	
+	public String getDateCreateString() {
+		return org.joda.time.format.DateTimeFormat.forPattern("dd.MM.yyyy hh:mm").print(dateCreate);
+	}
 
-	public void setDateCreate(Date dateCreate) {
+	public void setDateCreate(DateTime dateCreate) {
 		this.dateCreate = dateCreate;
+	}
+
+	public DateTime getDateUpdate() {
+		return dateUpdate;
+	}
+	
+	public String getDateUpdateString() {
+		return org.joda.time.format.DateTimeFormat.forPattern("dd.MM.yyyy hh:mm").print(dateUpdate);
+	}
+
+	public void setDateUpdate(DateTime dateUpdate) {
+		this.dateUpdate = dateUpdate;
 	}
 
 	public Long getCountInWarehouse() {
@@ -117,6 +141,14 @@ public class Product extends BaseEntity {
 		return getProductLocale().get(getLocaleLanguage());
 	}
 
+	public List<ProductWarehouse> getProductWarehouses() {
+		return productWarehouses;
+	}
+
+	public void setProductWarehouses(List<ProductWarehouse> productWarehouses) {
+		this.productWarehouses = productWarehouses;
+	}
+
 	public Boolean getIsHot() {
 		return isHot;
 	}
@@ -134,6 +166,12 @@ public class Product extends BaseEntity {
 	}
 
 	public Product() {
+	}
+
+	public Product(Integer id, String url) {
+		super();
+		this.id = id;
+		this.url = url;
 	}
 
 	@Override

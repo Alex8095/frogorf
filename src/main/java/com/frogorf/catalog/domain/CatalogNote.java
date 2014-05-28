@@ -4,18 +4,24 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.CollectionOfElements;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.IndexColumn;
 import org.hibernate.annotations.MapKey;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 import com.frogorf.domain.BaseEntity;
 import com.frogorf.domain.BaseLocale;
@@ -37,13 +43,16 @@ public class CatalogNote extends BaseEntity {
 	@JoinTable(name = "catalog_note_locale")
 	@CollectionOfElements(targetElement = BaseLocale.class, fetch = FetchType.EAGER)
 	@MapKey(targetElement = String.class, columns = @Column(name = "language_code"))
+	@Fetch(FetchMode.SELECT)
 	private Map<String, BaseLocale> catalogNoteLocale = new HashMap<String, BaseLocale>();
 
-	@ManyToOne
-	@JoinTable(name = "catalog_note_parent", joinColumns = @JoinColumn(name = "catalog_note_id"), inverseJoinColumns = @JoinColumn(name = "parent_id"))
+	@ManyToOne(cascade = { CascadeType.REFRESH })
+	@JoinColumn(name = "parent_id")
+	@NotFound(action = NotFoundAction.IGNORE)
 	private CatalogNote parentCatalogNote;
-	@ManyToMany
-	@JoinTable(name = "catalog_note_parent", joinColumns = @JoinColumn(name = "parent_id"), inverseJoinColumns = @JoinColumn(name = "catalog_note_id"))
+
+	@OneToMany(mappedBy = "parentCatalogNote")
+	@NotFound(action = NotFoundAction.IGNORE)
 	private List<CatalogNote> catalogNotes;
 
 	public String getUrl() {
@@ -111,6 +120,11 @@ public class CatalogNote extends BaseEntity {
 	}
 
 	public CatalogNote() {
+	}
+
+	public CatalogNote(int id) {
+		super();
+		this.id = id;
 	}
 
 	@Override

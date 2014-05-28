@@ -1,32 +1,26 @@
 package com.frogorf.shop.domain;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.frogorf.catalog.domain.CatalogNote;
+import org.hibernate.annotations.Type;
+import org.joda.time.DateTime;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.frogorf.domain.BaseEntity;
-import com.frogorf.domain.BaseLocale;
 import com.frogorf.security.domain.User;
-import com.frogorf.shop.domain.Product;
-import com.frogorf.shop.domain.ProductLocale;
-import com.frogorf.shop.domain.ProductWarehouse;
 
 @Entity
 @Table(name = "order_history")
 public class OrderHistory extends BaseEntity {
 
 	@Column(name = "date_time_add")
-	private Date dateTimeAdd;
+	@Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
+	@DateTimeFormat(pattern = "dd.MM.yyyy hh:mm")
+	private DateTime dateTimeAdd;
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
@@ -34,14 +28,18 @@ public class OrderHistory extends BaseEntity {
 	@JoinColumn(name = "order_id")
 	private Order order;
 
-	public Date getDateTimeAdd() {
+	public DateTime getDateTimeAdd() {
 		return dateTimeAdd;
 	}
 
-	public void setDateTimeAdd(Date dateTimeAdd) {
+	public void setDateTimeAdd(DateTime dateTimeAdd) {
 		this.dateTimeAdd = dateTimeAdd;
 	}
 
+	public String getDateTimeAddString() {
+		return org.joda.time.format.DateTimeFormat.forPattern("dd.MM.yyyy hh:mm").print(dateTimeAdd);
+	}
+	
 	public User getUser() {
 		return user;
 	}

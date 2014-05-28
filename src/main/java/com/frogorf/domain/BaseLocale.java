@@ -5,7 +5,12 @@ package com.frogorf.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+
+import org.hibernate.annotations.GenericGenerator;
 
 /** @author Tsurkin Alex
  * @version */

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:include="admin/fragments/layout :: head"></head>
+<body>
+	<div th:replace="admin/fragments/layout :: header"></div>
+	<div class="container-fluid">
+		<div class="row">
+			<div th:replace="admin/fragments/layout:: left"></div>
+			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+				<nav class="navbar navbar-default" role="navigation">
+				<div class="container-fluid">
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<ul class="nav navbar-nav">
+							<li><a href="../admin/product/new.html" th:href="@{/admin/product/new.html}" th:text="#{action.add}"></a></li>
+						</ul>
+					</div>
+				</div>
+				</nav>
+
+				<div class="table-responsive">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th th:text="#{product.url}"></th>
+								<th th:text="#{base.is_show}"></th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="product : ${products}">
+								<td>
+									<div class="checkbox">
+										<label><input type="checkbox" th:value="${product.id}" /></label>
+									</div>
+								</td>
+								<td><a class="" href="../product/edit.html" th:href="@{|product/${product.id}.html|}" th:text="${product.url}"></a></td>
+								<td th:text="${product.isShow} ? #{base.is_show.true} : #{base.is_show.false}">product.is_show</td>
+								<td><a class="btn btn-warning btn-xs" href="../admin/product/edit.html" th:href="@{|product/${product.id}/edit.html|}" th:text="#{action.edit}">edit</a> <a
+									class="btn btn-danger btn-xs" href="../admin/product/delete.html" th:href="@{|product/${product.id}/delete.html|}" th:text="#{action.delete}">delete</a></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

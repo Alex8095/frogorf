@@ -2,7 +2,6 @@ package com.frogorf.shop.domain;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,16 +9,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.frogorf.catalog.domain.CatalogNote;
+import org.hibernate.annotations.Type;
+import org.joda.time.DateTime;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.frogorf.domain.BaseEntity;
-import com.frogorf.domain.BaseLocale;
 import com.frogorf.security.domain.User;
-import com.frogorf.shop.domain.Product;
-import com.frogorf.shop.domain.ProductLocale;
-import com.frogorf.shop.domain.ProductWarehouse;
 
 @Entity
 @Table(name = "orders")
@@ -37,9 +34,13 @@ public class Order extends BaseEntity {
 	@JoinColumn(name = "address_delivery_id")
 	private Address addressDelivery;
 	@Column(name = "date_create")
-	private Date dateCreate;
+	@Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
+	@DateTimeFormat(pattern = "dd.MM.yyyy hh:mm")
+	private DateTime dateCreate;
 	@Column(name = "date_delivery")
-	private Date dateDelivery;
+	@Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
+	@DateTimeFormat(pattern = "dd.MM.yyyy hh:mm")
+	private DateTime dateDelivery;
 
 	@OneToMany
 	@JoinTable(name = "order_history", joinColumns = @JoinColumn(name = "order_id"), inverseJoinColumns = @JoinColumn(name = "id"))
@@ -61,19 +62,27 @@ public class Order extends BaseEntity {
 		this.user = user;
 	}
 
-	public Date getDateCreate() {
+	public DateTime getDateCreate() {
 		return dateCreate;
 	}
+	
+	public String getDateCreateString() {
+		return org.joda.time.format.DateTimeFormat.forPattern("dd.MM.yyyy hh:mm").print(dateCreate);
+	}
 
-	public void setDateCreate(Date dateCreate) {
+	public void setDateCreate(DateTime dateCreate) {
 		this.dateCreate = dateCreate;
 	}
 
-	public Date getDateDelivery() {
+	public DateTime getDateDelivery() {
 		return dateDelivery;
 	}
 
-	public void setDateDelivery(Date dateDelivery) {
+	public String getDateDeliveryString() {
+		return org.joda.time.format.DateTimeFormat.forPattern("dd.MM.yyyy hh:mm").print(dateDelivery);
+	}
+	
+	public void setDateDelivery(DateTime dateDelivery) {
 		this.dateDelivery = dateDelivery;
 	}
 

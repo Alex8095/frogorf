@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +18,7 @@ import org.springframework.data.domain.Sort;
 import com.frogorf.catalog.domain.CatalogNote;
 import com.frogorf.catalog.service.CatalogService;
 import com.frogorf.domain.BaseLocale;
+import com.frogorf.parenttest.ParentTest;
 import com.frogorf.service.AbstractBaseServiceTest;
 
 public class CatalogServiceTest extends AbstractBaseServiceTest {
@@ -25,6 +27,12 @@ public class CatalogServiceTest extends AbstractBaseServiceTest {
 
 	@Autowired
 	protected CatalogService catalogService;
+
+	/** @throws java.lang.Exception */
+	@Before
+	public void setUp() throws Exception {
+
+	}
 
 	@Test
 	public void testFindCatalogNotes() {
@@ -39,11 +47,36 @@ public class CatalogServiceTest extends AbstractBaseServiceTest {
 
 	@Test
 	public void testFindCatalogNotesByCatalogNoteCatalogNote() {
+		String url = "item url";
+		/* catalog locale */
+		BaseLocale catalogLocale = new BaseLocale();
+		catalogLocale.setContent("content");
+		Map<String, BaseLocale> catalogLocales = new HashMap<String, BaseLocale>();
+		catalogLocales.put("ru", catalogLocale);
+		catalogLocales.put("en", new BaseLocale("menu en"));
 		CatalogNote item = new CatalogNote();
-		item.setUrl("url testFindCatalogNotesByCatalogNoteCatalogNote");
+		item.setUrl(url);
 		catalogService.saveCatalogNote(item);
-		List<CatalogNote> CatalogNotes = catalogService.findCatalogNotesByCatalogNote(item);
+		CatalogNote ch1 = new CatalogNote();
+		ch1.setCatalogNoteLocale(catalogLocales);
+		ch1.setParentCatalogNote(item);
+		catalogService.saveCatalogNote(ch1);
+		CatalogNote ch2 = new CatalogNote();
+		ch2.setCatalogNoteLocale(catalogLocales);
+		ch2.setParentCatalogNote(item);
+		catalogService.saveCatalogNote(ch2);
+
+		CatalogNote searchCatalogNote = new CatalogNote();
+		searchCatalogNote.setUrl(url);
+		List<CatalogNote> CatalogNotes = catalogService.findCatalogNotesByCatalogNote(searchCatalogNote);
+		logger.info(Integer.toString(CatalogNotes.size()));
 		assertEquals(1, CatalogNotes.size());
+
+		searchCatalogNote = new CatalogNote();
+		searchCatalogNote.setParentCatalogNote(new CatalogNote(1));
+		CatalogNotes = catalogService.findCatalogNotesByCatalogNote(searchCatalogNote);
+		logger.info(Integer.toString(CatalogNotes.size()));
+		assertEquals(2, CatalogNotes.size());
 	}
 
 	@Test
@@ -156,17 +189,19 @@ public class CatalogServiceTest extends AbstractBaseServiceTest {
 		assertEquals(catalogNote.getCurrentCatalogNoteLocale().getWebDescription(), "webDescription");
 		assertEquals(catalogNote.getCurrentCatalogNoteLocale().getWebKeywords(), "webKeywords");
 		assertEquals(catalogNote.getCurrentCatalogNoteLocale().getWebTitle(), "webTitle");
-		
+
 		logger.info(catalogNote.toString());
 		logger.info(catalogNote.getCatalogNoteLocale().toString());
 	}
 
 	@Test
 	public void testDeleteCatalogNote() {
+
 		CatalogNote catalogNote = new CatalogNote();
 		catalogNote.setUrl("testDeleteCatalogNote");
 		catalogService.saveCatalogNote(catalogNote);
 		int catalogNoteId = catalogNote.getId();
+		logger.info(Integer.toString(catalogNoteId));
 		catalogService.deleteCatalogNote(catalogNoteId);
 		assertNull("testDeleteCatalogNote CatalogNote_id:" + Integer.toString(catalogNoteId), catalogService.findCatalogNoteById(catalogNoteId));
 	}

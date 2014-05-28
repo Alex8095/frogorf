@@ -3,9 +3,12 @@
  */
 package com.frogorf.catalog.dao.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import org.hibernate.Criteria;
+import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,12 +35,27 @@ public class CatalogDaoImpl implements CatalogDao {
 
 	@Override
 	public List<CatalogNote> findCatalogNotesByCatalogNote(CatalogNote catalogNote) {
-		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(CatalogNote.class);
-		if (catalogNote != null) {
-			if (catalogNote.getUrl() != null)
-				criteria.add(Restrictions.eq("url", catalogNote.getUrl()));
+		System.out.println(catalogNote.toString());
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		StringBuffer query = new StringBuffer();
+		if (catalogNote.getUrl() != null) {
+			query.append(" cn.url = :url ");
+			parameters.put("url", catalogNote.getUrl());
 		}
-		return criteria.list();
+		if (catalogNote.getParentCatalogNote() != null) {
+			query.append((query.length() > 0 ? " and " : "") + " cn.parent_id = :parent_id");
+			parameters.put("parent_id", catalogNote.getParentCatalogNote().getId());
+		}
+		SQLQuery sqlQuery = sessionFactory
+				.getCurrentSession()
+				.createSQLQuery(
+						"select cn.*, cnl.* from catalog_note cn left join catalog_note_locale cnl on cn.id = cnl.catalog_note_id and cnl.language_code = 'ru' " + (query.length() > 0 ? " where" : "")
+								+ query).addEntity("cn", CatalogNote.class);
+		if (parameters.size() > 0)
+			for (String key : parameters.keySet()) {
+				sqlQuery.setParameter(key, parameters.get(key));
+			}
+		return sqlQuery.list();
 	}
 
 	@Override
